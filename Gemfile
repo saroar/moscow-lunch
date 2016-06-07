@@ -15,6 +15,7 @@ gem 'pg'
 
 # Users
 gem 'devise', '~> 4.1', '>= 4.1.1'
+gem 'devise-bootstrap-views'
 
 # Tamplate
 gem 'slim-rails'

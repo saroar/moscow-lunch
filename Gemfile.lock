@@ -98,6 +98,7 @@ GEM
       railties (>= 4.1.0, < 5.1)
       responders
       warden (~> 1.2.3)
+    devise-bootstrap-views (0.0.8)
     diff-lcs (1.2.5)
     diffy (3.1.0)
     erubis (2.7.0)
@@ -291,6 +292,7 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.1.0)
   devise (~> 4.1, >= 4.1.1)
+  devise-bootstrap-views
   jazz_hands!
   jbuilder (~> 2.0)
   jquery-rails
