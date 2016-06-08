@@ -1,6 +1,7 @@
 .row
-  - if current_user.has_role? :admin
-   p = current_user.name
+  / - if current_user.has_role? :admin
+  h1.text-center = current_user.name
+  hr
 
 .row
   - for i in 0..4
