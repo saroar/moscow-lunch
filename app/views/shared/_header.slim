@@ -11,6 +11,7 @@ header
           = link_to "Moscow Lunch", root_path
       #bs-example-navbar-collapse-1.collapse.navbar-collapse
         ul.nav.navbar-nav
+          li= link_to 'WeekDays Menu', week_day_menu_path
         ul.nav.navbar-nav.navbar-right
           li.dropdown
             - if user_signed_in?

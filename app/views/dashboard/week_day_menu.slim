@@ -1,0 +1,8 @@
+.row
+  - if current_user.has_role? :admin
+   p = current_user.name
+
+.row
+  - for i in 0..4
+    .col-md-2{ class="col-md-offset-1" if i == 0 }
+      = link_to (@first_day + i.days).strftime("%A %d.%m.%y"), "#"
