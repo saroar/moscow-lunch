@@ -1,0 +1,26 @@
+header role="banner" 
+  nav.navbar.navbar-default.navbar-fixed-top role="navigation"
+    .container-fluid
+      .navbar-header
+        button.navbar-toggle type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+        = link_to "Lunch", root_path, class: "navbar-brand"
+      #bs-example-navbar-collapse-1.navbar-collapse.collapse
+        ul.nav.navbar-nav
+          li.active
+            = link_to "Admin", "#"
+          - if user_signed_in?
+            li
+              = link_to "Test", albums_path
+            li
+              = link_to "Sign out", destroy_user_session_path, method: :delete
+            .navbar-right
+              p.navbar-text
+                |  Signed in as 
+                = "#{current_user.email}"
+          li
+            = link_to "Sign up", new_user_registration_path
+          li
+            = link_to "Sign in", new_user_session_path
