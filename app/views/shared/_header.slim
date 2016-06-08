@@ -1,26 +1,27 @@
-header role="banner" 
-  nav.navbar.navbar-default.navbar-fixed-top role="navigation"
+header
+  nav.navbar.navbar-default
     .container-fluid
       .navbar-header
-        button.navbar-toggle type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+        button.navbar-toggle.collapsed type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"
+          span.sr-only
           span.icon-bar
           span.icon-bar
           span.icon-bar
-        = link_to "Lunch", root_path, class: "navbar-brand"
-      #bs-example-navbar-collapse-1.navbar-collapse.collapse
+        .navbar-brand
+          = link_to "Moscow Lunch", root_path
+      #bs-example-navbar-collapse-1.collapse.navbar-collapse
         ul.nav.navbar-nav
-          li.active
-            = link_to "Admin", "#"
-          - if user_signed_in?
-            li
-              = link_to "Test", albums_path
-            li
-              = link_to "Sign out", destroy_user_session_path, method: :delete
-            .navbar-right
-              p.navbar-text
-                |  Signed in as 
-                = "#{current_user.email}"
-          li
-            = link_to "Sign up", new_user_registration_path
-          li
-            = link_to "Sign in", new_user_session_path
+        ul.nav.navbar-nav.navbar-right
+          li.dropdown
+            - if user_signed_in?
+              a#drop.dropdown-toggle href='#' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'
+                = current_user.email
+                  span.caret
+              ul.dropdown-menu role='menu' aria-labelledby='drop'
+                li= link_to 'Log Out', destroy_user_session_path, :method=>'delete'
+                li= link_to 'Edit', edit_user_registration_path
+                - if current_user.has_role? :admin
+                  li = link_to 'Dashboard', '#'
+            - else
+              li = link_to 'Log in', new_user_session_path
+              li = link_to 'Sign up', new_user_registration_path
