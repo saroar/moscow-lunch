@@ -92,6 +92,7 @@ GEM
     concurrent-ruby (1.0.2)
     coolline (0.5.0)
       unicode_utils (~> 1.4)
+    database_cleaner (1.5.3)
     debug_inspector (0.0.2)
     devise (4.1.1)
       bcrypt (~> 3.0)
@@ -104,6 +105,11 @@ GEM
     diffy (3.1.0)
     erubis (2.7.0)
     execjs (2.7.0)
+    factory_girl (4.7.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.7.0)
+      factory_girl (~> 4.7.0)
+      railties (>= 3.0.0)
     git-version-bump (0.15.1)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
@@ -241,6 +247,10 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    shoulda-callback-matchers (1.1.4)
+      activesupport (>= 3)
+    shoulda-matchers (3.1.1)
+      activesupport (>= 4.0.0)
     simple_form (3.2.1)
       actionpack (> 4, < 5.1)
       activemodel (> 4, < 5.1)
@@ -296,9 +306,12 @@ DEPENDENCIES
   bootstrap-sass (~> 3.3.6)
   byebug
   cancancan (~> 1.13, >= 1.13.1)
+  capybara
   coffee-rails (~> 4.1.0)
+  database_cleaner
   devise (~> 4.1, >= 4.1.1)
   devise-bootstrap-views
+  factory_girl_rails
   jazz_hands!
   jbuilder (~> 2.0)
   jquery-rails
@@ -314,6 +327,8 @@ DEPENDENCIES
   rubocop
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
+  shoulda-callback-matchers
+  shoulda-matchers
   simple_form (~> 3.2, >= 3.2.1)
   slim-rails
   spring

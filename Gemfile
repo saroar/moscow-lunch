@@ -37,6 +37,14 @@ group :development, :test do
   gem 'rspec-rails'
 end
 
+group :test do
+  gem 'database_cleaner'
+  gem 'capybara'
+  gem 'factory_girl_rails'
+  gem 'shoulda-matchers'
+  gem "shoulda-callback-matchers"
+end
+
 group :development do
   gem 'rubocop', require: false
   gem 'pry'
