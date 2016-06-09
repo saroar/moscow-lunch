@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160609143427) do
+ActiveRecord::Schema.define(version: 20160609170023) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,11 +31,18 @@ ActiveRecord::Schema.define(version: 20160609143427) do
   add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace", using: :btree
   add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
 
+  create_table "day_menus", force: :cascade do |t|
+    t.integer  "day_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "item_associations", force: :cascade do |t|
     t.integer  "item_id"
     t.integer  "item_association_id"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.string   "item_association_type"
   end
 
   add_index "item_associations", ["item_association_id"], name: "index_item_associations_on_item_association_id", using: :btree
