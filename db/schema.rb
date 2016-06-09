@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160609122403) do
+ActiveRecord::Schema.define(version: 20160609123026) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,16 @@ ActiveRecord::Schema.define(version: 20160609122403) do
   add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id", using: :btree
   add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace", using: :btree
   add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
+
+  create_table "item_associations", force: :cascade do |t|
+    t.integer  "item_id"
+    t.integer  "item_association_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "item_associations", ["item_association_id"], name: "index_item_associations_on_item_association_id", using: :btree
+  add_index "item_associations", ["item_id"], name: "index_item_associations_on_item_id", using: :btree
 
   create_table "items", force: :cascade do |t|
     t.string   "name"
@@ -95,6 +105,8 @@ ActiveRecord::Schema.define(version: 20160609122403) do
 
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
 
+  add_foreign_key "item_associations", "item_associations"
+  add_foreign_key "item_associations", "items"
   add_foreign_key "items", "menus"
   add_foreign_key "organizations", "users"
 end
