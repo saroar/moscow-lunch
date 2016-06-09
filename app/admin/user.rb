@@ -5,7 +5,9 @@ ActiveAdmin.register User do
     column :id
     column :email
     column :name
-    column :admin
+    column :roles do |user|
+      user.roles.collect {|c| c.name }.to_sentence
+    end
     column :uid
     column :sign_in_count
     column :current_sign_in_at
