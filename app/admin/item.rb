@@ -1,4 +1,5 @@
 ActiveAdmin.register Item do
+  config.filters = false
   config.per_page = 25
 
   permit_params :menu_id, :name, :price
