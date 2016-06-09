@@ -1,9 +1,16 @@
 .row
   / - if current_user.has_role? :admin
-  h1.text-center = current_user.name
+  h1.text-center 
+  // = current_user.name
   hr
 
 .row
   - for i in 0..4
-    .col-md-2{ class="col-md-offset-1" if i == 0 }
-      = link_to (@first_day + i.days).strftime("%A %d.%m.%y"), "#"
+    - current_day = @first_day + i.days
+    = link_to orders_path(date: current_day.strftime("%A %d.%m.%y")) do
+      .col-md-1
+        .panel.panal-default
+          .panel-heading
+            = current_day.strftime("%A %d.%m.%y")
+          .panel-body{ class="#{'today' if current_day == Date.today}"}
+            = current_day.strftime("%a")
