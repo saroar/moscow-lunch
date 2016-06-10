@@ -6,8 +6,7 @@ class OrdersController < ApplicationController
   before_action :only_one_order_par_day!
 
   def index
-    binding.pry
-    params[:date] = params[:date] = params[:date].present? ? params[:date].to_datetime.in_time_zone('Moscow').end_of_day : DateTime.now
+    params[:date] = params[:date].present? ? params[:date].to_datetime.in_time_zone('Moscow').end_of_day : DateTime.now
     @date = params[:date]
     @orders = Order.filter(params.slice(:date, :organization))
     @orders = @orders.where(user: current_user) unless current_user.has_role? :admin

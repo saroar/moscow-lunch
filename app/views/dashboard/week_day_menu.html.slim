@@ -7,7 +7,7 @@
   .center
     - for i in 0..4
       - current_day = @first_day + i.days
-      = link_to orders_path(date: current_day.strftime("%A %d.%m.%y")) do
+      = link_to orders_path( :date => current_day.strftime("%d-%m-%Y")) do
 
         .col-md-2
           .panel.panel-success
