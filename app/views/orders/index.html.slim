@@ -15,6 +15,6 @@ hr
     - if had_order?
       h2.text-center = 'One order par day Thanks'
     = render @orders  
-  - else 
+  - else
     - if @date.to_date == Date.today
       h2.text-center = link_to 'Order now', new_order_path, class: 'btn btn-lg btn-success'

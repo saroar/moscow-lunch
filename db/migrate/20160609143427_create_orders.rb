@@ -2,7 +2,6 @@ class CreateOrders < ActiveRecord::Migration
   def change
     create_table :orders do |t|
       t.decimal :total
-      t.references :item, index: true, foreign_key: true
       t.references :user, index: true, foreign_key: true
       t.references :organization, index: true, foreign_key: true
 

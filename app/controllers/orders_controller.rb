@@ -35,7 +35,7 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(items_ids: [])
+    params.require(:order).permit(item_ids: [])
   end
 
   def only_one_order!

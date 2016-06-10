@@ -5,6 +5,6 @@ class ItemAssociation < ActiveRecord::Base
   belongs_to :item_association, polymorphic: true
 
   def set_price
-    self.price = price
+    self.price = item.price
   end
 end

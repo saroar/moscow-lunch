@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   has_many :orders, dependent: :destroy
 
   validates :name, presence: true, length: { in: 1..100 }
-  validates :organization, presence: true
+  #validates :organization, presence: true
 
   def today_orders
     date = Time.now
