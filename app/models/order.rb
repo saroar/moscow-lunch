@@ -1,4 +1,6 @@
 class Order < ActiveRecord::Base
+  include Filterable
+
   belongs_to :user
   belongs_to :organization
   has_many :item_associations, as: :item_association, dependent: :destroy

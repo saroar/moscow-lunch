@@ -7,6 +7,12 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   belongs_to :organization
+  has_many :orders
+
+  def today_orders
+    date = Time.now
+    self.orders.where(created_at: date.beginning_of_day..date.end_of_day)
+  end
 
   def become_admin!
     if ! User.any?
