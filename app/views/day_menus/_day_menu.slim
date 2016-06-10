@@ -1,7 +1,12 @@
 - Menu.all.each do |m|
-  = m.name
-  .row
-    - day_menu.items.where(menu: m).each do |item|
-      .col-md-4
-        = item.name + " P "
-        = item.price
+  .col-md-4
+    .panel.panel-success
+      .panel-heading
+        .panel-title.title
+          = m.name
+          br
+      - day_menu.items.where(menu: m).each do |item|
+        .panel-body
+          li
+            = item.name + " P "
+            = item.price
