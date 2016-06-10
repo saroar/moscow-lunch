@@ -1,6 +1,9 @@
 class Order < ActiveRecord::Base
   include Filterable
 
+  before_create :total_price
+  before_create :set_organization
+
   belongs_to :user
   belongs_to :organization
   has_many :item_associations, as: :item_association, dependent: :destroy
@@ -11,4 +14,14 @@ class Order < ActiveRecord::Base
 
   scope :date, -> (date) { where created_at: date.beginning_of_day.utc..date.end_of_day.utc }
   scope :organization, -> (organization) { joins(:organization).where("organizations.name like ?", "#{organization}%") }
+
+  private
+
+  def total_price
+    self.price = items(&:price)
+  end
+
+  def set_organization
+    self.organization = user.organization
+  end
 end

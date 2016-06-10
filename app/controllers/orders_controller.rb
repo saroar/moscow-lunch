@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
   respond_to :html
 
   before_action :authenticate_user!
-  before_action :only_one_order_par_day!
+  before_action :only_one_order!, only: [:new, :create]
 
   def index
     params[:date] = params[:date].present? ? params[:date].to_datetime.in_time_zone('Moscow').end_of_day : DateTime.now
@@ -17,17 +17,16 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new
-    @date = Date.new
-    @item = Item.new
+    @date = DateTime.now
+    @items = DayMenu.actual(@date).items
 
-    @order.save
-    respond_with(@order, location: orders_path)
+    respond_with @order
   end
 
   def create
-    @order = current_user.build(order_params)
-    @date = Date.new
-    @item = Item.new
+    @order = current_user.orders.build(order_params)
+    @date = DateTime.now
+    @items = DayMenu.actual(@date).items
 
     @order.save
     respond_with(@order, location: orders_path)
@@ -39,7 +38,7 @@ class OrdersController < ApplicationController
     params.require(:order).permit(items_ids: [])
   end
 
-  def only_one_order_par_day!
+  def only_one_order!
     unless current_user.today_orders.empty?
       flash[:notice] = "Sorry only one order par day!"
       redirect_to orders_path

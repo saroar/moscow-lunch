@@ -1,0 +1,8 @@
+h1.text-center = @date.strftime('%A') + ' order'
+= simple_form_for @order do |f|
+  .row
+    - Menu.all.each do |m|
+      .col-md-4
+        = f.association :items, label: m.name, multiple: false, collection: @items.where(menu: m), label_method: lambda { |item| "#{item.name} " "#{ number_to_currency(item.price,  unit: "₽ ", precision: 0)} "}
+    
+  = f.button :submit

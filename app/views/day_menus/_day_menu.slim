@@ -8,5 +8,5 @@
       - day_menu.items.where(menu: m).each do |item|
         .panel-body
           li
-            = item.name + " P "
-            = item.price
+            = item.name
+            = number_to_currency(item.price,  unit: " ₽", precision: 0)
