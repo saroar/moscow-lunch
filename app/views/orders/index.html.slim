@@ -1,8 +1,17 @@
 h1.text-center
-  = @day_menu.blank? ? "No Menu for " :  "Menu for "
-  = @date.strftime("%A %d.%m.%Y")
+  = @day_menu.blank? ? 'No Menu for ' :  'Menu for '
+  = @date.strftime('%A %d.%m.%Y')
 hr
 
 - if @day_menu.present?
   .row
     = render 'day_menus/day_menu', day_menu: @day_menu
+
+  h1.text-center
+    = @orders.blank? ? 'No order for ' : ''
+    = @date.strftime('%A %d.%m.%Y')
+
+  - if @orders.present? && (current_user.has_role? :admin) && (@date.to_date == Date.today) && (@orders.where(user: current_user).empty?)
+      h2.text-center = 'One order par day Thanks'
+  - else @date.to_date == Date.today
+    h2.text-center = link_to 'Order now', new_order_path, class: 'btn btn-lg btn-success'
