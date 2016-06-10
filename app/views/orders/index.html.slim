@@ -1,4 +1,8 @@
-h1
-  = @order.inspect
-  = @date.inspect
-  = @day_menu.inspect
+h1.text-center
+  = @day_menu.blank? ? "No Menu for " :  "Menu for "
+  = @date.strftime("%A %d.%m.%Y")
+hr
+
+- if @day_menu.present?
+  .row
+    = render 'day_menus/day_menu', day_menu: @day_menu

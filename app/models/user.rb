@@ -7,7 +7,10 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   belongs_to :organization
-  has_many :orders
+  has_many :orders, dependent: :destroy
+
+  validates :name, presence: true, length: { in: 1..100 }
+  validates :organization, presence: true
 
   def today_orders
     date = Time.now

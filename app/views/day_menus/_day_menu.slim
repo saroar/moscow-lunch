@@ -1,0 +1,7 @@
+- Menu.all.each do |m|
+  = m.name
+  .row
+    - day_menu.items.where(menu: m).each do |item|
+      .col-md-4
+        = item.name + " P "
+        = item.price
