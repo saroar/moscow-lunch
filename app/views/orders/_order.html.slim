@@ -1,0 +1,5 @@
+= order.user.namee
+- order.item_associations.each do |item_association|
+  = item_association.item.name
+  = item_association.item.price
+h2 Total Price "#{order.total}"

@@ -11,7 +11,10 @@ hr
     = @orders.blank? ? 'No order for ' : ''
     = @date.strftime('%A %d.%m.%Y')
 
-  - if had_order?
+  - if @orders.present?
+    - if had_order?
       h2.text-center = 'One order par day Thanks'
-  - else @date.to_date == Date.today
-    h2.text-center = link_to 'Order now', new_order_path, class: 'btn btn-lg btn-success'
+    = render @orders  
+  - else 
+    - if @date.to_date == Date.today
+      h2.text-center = link_to 'Order now', new_order_path, class: 'btn btn-lg btn-success'
