@@ -12,7 +12,7 @@ class Order < ActiveRecord::Base
   # validates :user,  presence: true
   # validates :items, presence: true
 
-  scope :date, -> (date) { where created_at: date.beginning_of_day.utc..date.end_of_day.utc }
+  scope :date, -> (date) { where created_at: date.beginning_of_day..date.end_of_day }
   scope :organization, -> (organization) { joins(:organization).where("organizations.name like ?", "#{organization}%") }
 
   private
