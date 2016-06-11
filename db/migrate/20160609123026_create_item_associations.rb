@@ -2,8 +2,9 @@ class CreateItemAssociations < ActiveRecord::Migration
   def change
     create_table :item_associations do |t|
       t.decimal :price
-      t.references :item, index: true, foreign_key: true
-      t.references :item_association, index: true, foreign_key: true
+      t.integer :item_id
+      t.integer :item_association_id
+      t.string  :item_association_type
 
       t.timestamps null: false
     end

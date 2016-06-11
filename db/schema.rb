@@ -41,13 +41,10 @@ ActiveRecord::Schema.define(version: 20160610195055) do
     t.decimal  "price"
     t.integer  "item_id"
     t.integer  "item_association_id"
+    t.string   "item_association_type"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
-    t.string   "item_association_type"
   end
-
-  add_index "item_associations", ["item_association_id"], name: "index_item_associations_on_item_association_id", using: :btree
-  add_index "item_associations", ["item_id"], name: "index_item_associations_on_item_id", using: :btree
 
   create_table "items", force: :cascade do |t|
     t.string   "name"
@@ -124,8 +121,6 @@ ActiveRecord::Schema.define(version: 20160610195055) do
 
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
 
-  add_foreign_key "item_associations", "item_associations"
-  add_foreign_key "item_associations", "items"
   add_foreign_key "items", "menus"
   add_foreign_key "orders", "organizations"
   add_foreign_key "orders", "users"
