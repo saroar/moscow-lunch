@@ -13,4 +13,5 @@
             = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
           .form-actions
             = f.button :submit, "Log in"
+            = render "shared/social_links"
     = render "devise/shared/links"

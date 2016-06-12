@@ -19,7 +19,7 @@ gem 'devise-bootstrap-views'
 gem 'cancancan', '~> 1.13', '>= 1.13.1'
 gem 'rolify', '~> 5.0'
 gem 'activeadmin', github: 'activeadmin'
-gem 'omniauth-google-oauth2', '~> 0.4.1'
+gem 'omniauth-google-oauth2'
 
 # Form
 gem 'simple_form', '~> 3.2', '>= 3.2.1'
@@ -29,6 +29,9 @@ gem 'slim-rails'
 
 # Style
 gem 'bootstrap-sass', '~> 3.3.6'
+
+# secure config keys
+gem 'figaro', '~> 1.1', '>= 1.1.1'
 
 group :development, :test do
   gem 'byebug'
