@@ -1,5 +1,8 @@
-= order.user.name
-- order.item_associations.each do |item_association|
-  = item_association.item.name
-  = item_association.item.price
-h2 Total Price "#{order.total}"
+h1 = 'Thanks for order ' + " #{order.user.name.capitalize}" + ' enjoy your lunch!!!'
+
+ul
+  - order.item_associations.each do |item_association|
+    li
+      = item_association.item.name + ': '
+      = number_to_currency(item_association.item.price,  unit: "₽ ", precision: 0)
+h2 Total Price #{number_to_currency(order.total,  unit: "₽ ", precision: 0)}

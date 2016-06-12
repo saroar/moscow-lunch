@@ -1,4 +1,4 @@
-h1.text-center = @date.strftime('%A') + ' order'
+h1.text-center = @date.strftime('%A') + ' orders'
 = simple_form_for @order do |f|
   .row
     - Menu.all.each do |m|

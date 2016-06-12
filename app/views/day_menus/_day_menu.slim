@@ -1,12 +1,13 @@
-- Menu.all.each do |m|
-  .col-md-4
-    .panel.panel-success
-      .panel-heading
-        .panel-title.title
-          = m.name
-          br
-      - day_menu.items.where(menu: m).each do |item|
-        .panel-body
-          li
-            = item.name
-            = number_to_currency(item.price,  unit: " ₽", precision: 0)
+- if !@orders.present?
+  - Menu.all.each do |m|
+    .col-md-4
+      .panel.panel-success
+        .panel-heading
+          .panel-title.title
+            = m.name
+            br
+        - day_menu.items.where(menu: m).each do |item|
+          .panel-body
+            li
+              = item.name
+              = number_to_currency(item.price,  unit: " ₽", precision: 0)

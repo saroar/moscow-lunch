@@ -8,8 +8,7 @@ hr
     = render 'day_menus/day_menu', day_menu: @day_menu
 
   h1.text-center
-    = @orders.blank? ? 'No order for ' : ''
-    = @date.strftime('%A %d.%m.%Y')
+    = @orders.blank? ? 'No order' : ''
 
   - if @orders.present?
     - if had_order?
@@ -17,4 +16,4 @@ hr
     = render @orders  
   - else
     - if @date.to_date == Date.today
-      h2.text-center = link_to 'Order now', new_order_path, class: 'btn btn-lg btn-success'
+      h2.text-center = link_to 'Place your order', new_order_path, class: 'btn btn-lg btn-success'

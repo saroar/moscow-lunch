@@ -5,7 +5,7 @@
 
 .row
   .center
-    - for i in 0..5
+    - for i in 0..6
       - current_day = @first_day + i.days
       = link_to orders_path( date: current_day.strftime("%d-%m-%Y")) do
         .col-md-2
