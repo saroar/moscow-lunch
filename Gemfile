@@ -19,6 +19,7 @@ gem 'devise-bootstrap-views'
 gem 'cancancan', '~> 1.13', '>= 1.13.1'
 gem 'rolify', '~> 5.0'
 gem 'activeadmin', github: 'activeadmin'
+gem 'omniauth-google-oauth2', '~> 0.4.1'
 
 # Form
 gem 'simple_form', '~> 3.2', '>= 3.2.1'
