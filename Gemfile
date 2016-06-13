@@ -33,6 +33,9 @@ gem 'bootstrap-sass', '~> 3.3.6'
 # secure config keys
 gem 'figaro', '~> 1.1', '>= 1.1.1'
 
+# others
+gem 'responders'
+
 group :development, :test do
   gem 'byebug'
   gem 'jazz_hands', github: 'nixme/jazz_hands', branch: 'bring-your-own-debugger'
