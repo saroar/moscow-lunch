@@ -13,6 +13,7 @@ ActiveAdmin.register User do
     column :roles do |user|
       user.roles.collect {|c| c.name }.to_sentence
     end
+    column :auth_token
     column :sign_in_count
     column :current_sign_in_at
     column :last_sign_in_at
