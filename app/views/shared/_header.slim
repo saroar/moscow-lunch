@@ -13,6 +13,8 @@ header
         ul.nav.navbar-nav
           li= link_to 'WeekDays Menu', week_day_menu_path
         ul.nav.navbar-nav.navbar-right
+          - if current_user.has_role? :admin
+            li = link_to 'Admin Panel', admin_root_path
           li.dropdown
             - if user_signed_in?
               a#drop.dropdown-toggle href='#' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'
@@ -22,8 +24,6 @@ header
               ul.dropdown-menu role='menu' aria-labelledby='drop'
                 li= link_to 'Log Out', destroy_user_session_path, :method=>'delete'
                 li= link_to 'Edit', edit_user_registration_path
-                - if current_user.has_role? :admin
-                  li = link_to 'Dashboard', '#'
             - else
               li = link_to 'Sign in', new_user_session_path
               li = link_to 'Sign up', new_user_registration_path
