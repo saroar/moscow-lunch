@@ -48,9 +48,10 @@ end
 group :test do
   gem 'database_cleaner'
   gem 'capybara'
-  gem 'factory_girl_rails'
   gem 'shoulda-matchers'
-  gem "shoulda-callback-matchers"
+  gem 'shoulda-callback-matchers'
+  gem 'factory_girl_rails'
+  gem 'faker'
 end
 
 group :development do

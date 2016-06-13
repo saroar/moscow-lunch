@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   rolify
   before_create :become_admin!
+  before_validation :generate_authentication_token!
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -36,6 +37,12 @@ class User < ActiveRecord::Base
   def today_orders
     date = Time.now
     self.orders.where(created_at: date.beginning_of_day..date.end_of_day)
+  end
+
+  def generate_authentication_token!
+    begin
+      self.auth_token = Devise.friendly_token
+    end while self.class.exists?(auth_token: auth_token)
   end
 
   def become_admin!
