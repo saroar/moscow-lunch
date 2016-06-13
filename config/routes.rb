@@ -6,4 +6,8 @@ Rails.application.routes.draw do
   get 'week_day_menu' => 'dashboard#week_day_menu'
 
   resources :orders
+
+  namespace :api, defaluts: { format: :json } do
+    resources :orders, only: :index
+  end
 end

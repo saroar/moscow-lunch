@@ -10,6 +10,7 @@ class OrdersController < ApplicationController
     @date = params[:date]
     @orders = Order.filter(params.slice(:date, :organization))
     @orders = @orders.where(user: current_user) unless current_user.has_role? :admin
+
     @day_menu = DayMenu.actual(params[:date])
 
     respond_with @orders
@@ -29,7 +30,7 @@ class OrdersController < ApplicationController
     @items = DayMenu.actual(@date).items
 
     @order.save
-    respond_with(@order, location: orders_path)
+    respond_with @order, location: orders_path
   end
 
   private

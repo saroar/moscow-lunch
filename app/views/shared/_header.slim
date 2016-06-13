@@ -13,8 +13,9 @@ header
         ul.nav.navbar-nav
           li= link_to 'WeekDays Menu', week_day_menu_path
         ul.nav.navbar-nav.navbar-right
-          - if current_user.has_role? :admin
-            li = link_to 'Admin Panel', admin_root_path
+          - if user_signed_in?
+            - if current_user.has_role? :admin
+              li = link_to 'Admin Panel', admin_root_path
           li.dropdown
             - if user_signed_in?
               a#drop.dropdown-toggle href='#' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'
