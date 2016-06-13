@@ -12,4 +12,6 @@ Rails.application.routes.draw do
     resources :sessions, only: [:create, :destroy]
     resources :users, only: :show
   end
+
+  get '*path' => redirect('/')
 end

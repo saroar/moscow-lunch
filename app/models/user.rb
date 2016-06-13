@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   belongs_to :organization
   has_many :orders, dependent: :destroy
 
-  validates :name, presence: true, length: { in: 1..100 }
+  validates :name, :uniqueness => true, presence: true, length: { in: 1..100 }
   validates :organization, presence: true
 
   def self.from_omniauth(auth)
