@@ -16,7 +16,8 @@ header
           li.dropdown
             - if user_signed_in?
               a#drop.dropdown-toggle href='#' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'
-                = current_user.email
+                span.glyphicon.glyphicon-user
+                  = " " + current_user.name
                   span.caret
               ul.dropdown-menu role='menu' aria-labelledby='drop'
                 li= link_to 'Log Out', destroy_user_session_path, :method=>'delete'
