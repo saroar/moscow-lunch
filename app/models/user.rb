@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   has_many :orders, dependent: :destroy
 
   validates :name, presence: true, length: { in: 1..100 }
-  #validates :organization, presence: true
+  validates :organization, presence: true
 
   def self.from_omniauth(auth)
     user = User.where(:provider => auth.provider, :uid => auth.uid).first
