@@ -8,7 +8,7 @@ class Api::SessionsController < ApplicationController
       sign_in user, store: false
       user.generate_authentication_token!
       user.save
-      render json: user
+      render json: user, serializer: UserAuthSerializer, status: 200, location: [:api, user]
     else
       render json: { errors: "Invalied Email or password" }, status: 422
     end
