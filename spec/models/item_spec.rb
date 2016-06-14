@@ -21,5 +21,17 @@
 require 'rails_helper'
 
 RSpec.describe Item, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context 'associations' do
+    it { should belong_to(:menu) }
+    it { should have_many(:items_associations).dependent(:destroy) }
+  end
+
+  context 'validations' do
+    it { validate_presence_of :menu }
+
+    it { validate_presence_of :name }
+    it { validate_length_of(:name).is_at_least(1).is_at_most(100) }
+
+    it { validate_presence_of :price }
+  end
 end
