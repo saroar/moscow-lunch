@@ -36,6 +36,9 @@ gem 'figaro', '~> 1.1', '>= 1.1.1'
 # others
 gem 'responders'
 
+#Api gems
+gem 'active_model_serializers'
+
 group :development, :test do
   gem 'byebug'
   gem 'jazz_hands', github: 'nixme/jazz_hands', branch: 'bring-your-own-debugger'
@@ -43,10 +46,12 @@ group :development, :test do
   gem 'timecop'
   gem 'rspec-core'
   gem 'rspec-rails'
+  gem 'rspec-collection_matchers'
 end
 
 group :test do
   gem 'database_cleaner'
+  gem 'selenium-webdriver'
   gem 'capybara'
   gem 'shoulda-matchers'
   gem 'shoulda-callback-matchers'
