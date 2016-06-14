@@ -39,6 +39,9 @@ gem 'responders'
 #Api gems
 gem 'active_model_serializers'
 
+# Schema and routes info
+gem 'annotate'
+
 group :development, :test do
   gem 'byebug'
   gem 'jazz_hands', github: 'nixme/jazz_hands', branch: 'bring-your-own-debugger'
