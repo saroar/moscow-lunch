@@ -18,8 +18,8 @@
 #  fk_rails_6f9379e5f1  (menu_id => menus.id)
 #
 
-require 'rails_helper'
+class ItemSerializer < ActiveModel::Serializer
+  attributes :name, :price
 
-RSpec.describe Item, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  has_one :menu
 end

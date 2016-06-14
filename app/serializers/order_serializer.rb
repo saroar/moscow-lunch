@@ -20,8 +20,11 @@
 #  fk_rails_fe8af6535c  (organization_id => organizations.id)
 #
 
-require 'rails_helper'
+class OrderSerializer < ActiveModel::Serializer
+  attributes :id, :total, :created_at
 
-RSpec.describe Order, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  has_one :user
+  has_one :organization
+
+  has_many :items
 end

@@ -17,8 +17,6 @@
 #  fk_rails_7b93e0061c  (user_id => users.id)
 #
 
-class Organization < ActiveRecord::Base
-  has_many :users, dependent: :destroy
-
-  validates :name, presence: true, length: { in: 1..100 }
+class OrganizationSerializer < ActiveModel::Serializer
+  attributes :name
 end
