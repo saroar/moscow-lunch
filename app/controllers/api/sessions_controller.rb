@@ -10,12 +10,12 @@ class Api::SessionsController < ApplicationController
       user.save
       render json: user, serializer: UserAuthSerializer, status: 200, location: [:api, user]
     else
-      render json: { errors: "Invalied Email or password" }, status: 422
+      render json: { errors: "Invalid email or password" }, status: 422
     end
   end
 
-  def destory
-    user = User.fine_by(auth_token: params[:id])
+  def destroy
+    user = User.find_by(auth_token: params[:id])
     user.generate_authentication_token!
     user.save
     head 204
