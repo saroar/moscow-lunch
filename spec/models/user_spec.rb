@@ -31,6 +31,24 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+
+  context "#become_admin!" do
+    before do
+      @user = FactoryGirl.build(:user)
+    end
+
+    context "when current user is first" do
+      it { expect { @user.send(:become_admin!) }.to change{@user.has_role? :admin }.from(false).to(true) }
+    end
+
+    context "when current user isnot first" do
+      before do
+        FactoryGirl.create(:user)
+      end
+      it { expect{@user.send(:become_admin!)}.to_not change{@user.has_role? :admin } }
+    end
+  end
+
   context "#generate_authentication_token!" do
     before do
       @user = FactoryGirl.build(:user)

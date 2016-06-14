@@ -35,5 +35,9 @@ FactoryGirl.define do
     email                   { Faker::Internet.email }
     password                "password"
     password_confirmation   "password"
+
+    factory :admin do
+      before(:create) {|user| user.add_role(:admin)}
+    end
   end
 end
