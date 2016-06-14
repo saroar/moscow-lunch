@@ -42,9 +42,15 @@ class User < ActiveRecord::Base
   has_many :orders, dependent: :destroy
 
   validates :name, :uniqueness => true, presence: true, length: { in: 1..100 }
-  validates :organization, presence: true
+  #validates :organization, presence: true
 
-  def self.from_omniauth(auth)
+  def generate_authentication_token!
+    begin
+      self.auth_token = Devise.friendly_token
+    end while self.class.exists?(auth_token: auth_token)
+  end
+
+  def self.from_omniauth(auth, organization)
     user = User.where(:provider => auth.provider, :uid => auth.uid).first
     if user
       return user
@@ -54,11 +60,12 @@ class User < ActiveRecord::Base
         return registered_user
       else
         user = User.create(
-        provider:   auth.provider,
-        uid:        auth.uid,
-        name:       auth.info.name,
-        email:      auth.info.email,
-        password:   Devise.friendly_token[0,20]
+          provider:auth.provider,
+          uid:auth.uid,
+          name: auth.info.name,
+          email:auth.info.email,
+          password:Devise.friendly_token[0,20],
+          organization: organization
         )
       end
     end
@@ -67,12 +74,6 @@ class User < ActiveRecord::Base
   def today_orders
     date = Time.now
     self.orders.where(created_at: date.beginning_of_day..date.end_of_day)
-  end
-
-  def generate_authentication_token!
-    begin
-      self.auth_token = Devise.friendly_token
-    end while self.class.exists?(auth_token: auth_token)
   end
 
   def become_admin!

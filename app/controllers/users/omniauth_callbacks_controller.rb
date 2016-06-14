@@ -1,8 +1,6 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
-  skip_before_action :verify_authenticity_token
-
   def google_oauth2
-      @user = User.from_omniauth(request.env["omniauth.auth"])
+      @user = User.from_omniauth(request.env["omniauth.auth"], Organization.first)
 
       if @user.persisted?
         flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => "Google"

@@ -10,6 +10,8 @@ ActiveAdmin.register User do
     column :email
     column :name
     column :organization
+    column :provider
+    column :uid
     column :roles do |user|
       user.roles.collect {|c| c.name }.to_sentence
     end
