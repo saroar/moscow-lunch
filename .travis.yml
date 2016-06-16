@@ -2,14 +2,6 @@ language: ruby
 rvm:
   - "2.3.1"
 
-deploy:
-  provider: heroku
-  api_key:
-    secure: DJ4RdirIQlGOZydhRWfr+C8MgGI3ZwUBw/l42kAeM0CSICJH5bWDHa4L4W+Cetr424FoYvrGw2WUZzuwKeUHrmro5fVXVHgEKXGj2CEE50r4l4m0uE7POijovDNSIGAjw2+QZzy01w0VsfX48BAnurkmZa2pGXX2O+9WDwqN9t9tzdz5VcE9kYDxPLBKOvIViQw78Mtr+yznxtUG0yZU8Jy4UNb8M/qlWt42CjyhDqqW/CJdIyip2PY10KZQ6s/S3zTSvir2Th60Jxc4ly+7VvdbT1LcT691nxqiQvtfL4ayY27yOxPnMJQoT5qeyYYFBQCF0eHwTG84hDoxmLKkdJk+Kc3P1dKyyY1CURm9ZpyRE2yWlX7JweLYvl3DyDglctm5SeW2rsyyqPO8EbEIEKSwBLQB/NpgrVFZprDkYxZoWVeR3eFsLwjosioi7HHVcwldMkZ77k2oZPS5HzC5DVYTsNh15rIbdjmIKbt8C8Ve78HhpIi5x7eUsteLzJ65ow/x4sONVvxDQLelP7M7LjBnkiBAsWd2PAjgunmszvxwSd+2mw0Fqo21IrWNi6fkV/ZLEBs6aaBOric50pM7Q5p3RO22ol8cC/EC0ELDxw1zIbPK4157L1AA/I77eGR9cm9BQ06hVdmeqqhS6QAZj/bvN2GXQRzKus5ode28OSo=
-  app: moscow-lunch
-  on:
-    repo: saroar/moscow-lunch
-
 env:
   - DB=postqresql
 
@@ -21,9 +13,3 @@ script:
   - export RAILS_ENV=test
   - bundle exec rake db:test:prepare
   - bundle exec rspec spec/
-
-after_success:
-  - gem install heroku
-  - yes | ruby travis_deployer.rb
-  - heroku keys:clear
-  - git push heroku master

@@ -3,7 +3,7 @@
 # Table name: items
 #
 #  id          :integer          not null, primary key
-#  category_id :integer
+#  menu_id :integer
 #  name        :string
 #  price       :decimal(, )
 #  created_at  :datetime         not null
