@@ -1,12 +1,26 @@
 language: ruby
 rvm:
   - "2.3.1"
+deploy:
+  provider: heroku
+  app: moscow-lunch
+  api_key: "c9b8bb3d-9c8d-435e-99bc-89a3818f61e4"
+
 env:
   - DB=postqresql
+
 branches:
   only:
     - master
+
 script:
   - export RAILS_ENV=test
   - bundle exec rake db:test:prepare
   - bundle exec rspec spec/
+
+after_success:
+  - gem install heroku
+  - yes | ruby travis_deployer.rb
+  - heroku keys:clear
+  - yes | heroku keys:add
+  - git push heroku master
