@@ -6,8 +6,8 @@ module Request
   end
 
   module HeadersHelpers
-    def api_header()
-      request.headers['Accept'] = "application/vnd.jr-lunchy"
+    def api_header
+      request.headers['Accept'] = 'application/vnd.jr-lunchy'
     end
 
     def api_response_format(format = Mime::JSON)
@@ -21,7 +21,7 @@ module Request
     end
 
     def api_authorization_header(token)
-      request.headers['Authorization'] =  token
+      request.headers['Authorization'] = token
     end
   end
 end

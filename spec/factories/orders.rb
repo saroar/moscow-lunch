@@ -16,7 +16,7 @@ FactoryGirl.define do
     after(:build) do |user|
       if user.items.empty?
         day_menu_items = create(:day_menu, day_id: DateTime.now.wday).items
-        user.items << [ day_menu_items[0], day_menu_items[3], day_menu_items[6] ]
+        user.items << [day_menu_items[0], day_menu_items[3], day_menu_items[6]]
       end
     end
   end

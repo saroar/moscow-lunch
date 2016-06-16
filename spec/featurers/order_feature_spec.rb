@@ -1,7 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "Order", type: :feature do
-
+RSpec.feature 'Order', type: :feature do
   before (:each) do
     @admin = FactoryGirl.create(:admin)
     @user = FactoryGirl.create(:user)
@@ -9,32 +8,30 @@ RSpec.feature "Order", type: :feature do
     @today_menu = FactoryGirl.create(:day_menu)
   end
 
-  feature "Add new" do
+  feature 'Add new' do
     subject { page }
 
     feature 'with logged in user' do
-
       before (:each) do
-        login_as(@user, :scope => :user)
-        visit "/orders/new"
+        login_as(@user, scope: :user)
+        visit '/orders/new'
       end
 
       subject { page }
 
       it { should have_button 'Create Order' }
 
-      it "should have each menu" do
+      it 'should have each menu' do
         Menu.all do |menu|
           should have_content menu.name
         end
       end
 
-      it "should have each item" do
+      it 'should have each item' do
         Item.all.each do |item|
           should have_content item.name
         end
       end
-
 
       scenario 'with valid data' do
         all('select').each do |select|
@@ -43,7 +40,7 @@ RSpec.feature "Order", type: :feature do
 
         click_button 'Create Order'
 
-        expect(current_path).to eql("/orders")
+        expect(current_path).to eql('/orders')
 
         should have_content 'Order was successfully created.'
 
@@ -57,11 +54,10 @@ RSpec.feature "Order", type: :feature do
       scenario 'with invalid data' do
         click_button 'Create Order'
 
-        expect(current_path).to eql("/orders")
+        expect(current_path).to eql('/orders')
 
         should have_content 'can\'t be blank'
       end
-
     end
 
     feature 'with log out user' do
@@ -75,5 +71,4 @@ RSpec.feature "Order", type: :feature do
       it { should have_content 'You need to sign in or sign up before continuing.' }
     end
   end
-
 end

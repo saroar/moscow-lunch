@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby '2.3.1'
 
 # Rails core gems
 gem 'rails', '4.2.6'
@@ -33,7 +34,7 @@ gem 'figaro', '~> 1.1', '>= 1.1.1'
 # others
 gem 'responders'
 
-#Api gems
+# Api gems
 gem 'active_model_serializers'
 
 # Schema and routes info

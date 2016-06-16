@@ -4,7 +4,7 @@ ActiveAdmin.setup do |config|
   # Set the title that is displayed on the main layout
   # for each of the active admin pages.
   #
-  config.site_title = "Moscow Lunch"
+  config.site_title = 'Moscow Lunch'
 
   # Set the link url for the title. For example, to take
   # users to your main site. Defaults to no link.
@@ -70,7 +70,7 @@ ActiveAdmin.setup do |config|
   # config.pundit_default_policy = "MyDefaultPunditPolicy"
 
   # You can customize your CanCan Ability class name here.
-  config.cancan_ability_class = "Ability"
+  config.cancan_ability_class = 'Ability'
 
   # You can specify a method to be called on unauthorized access.
   # This is necessary in order to prevent a redirect loop which happens

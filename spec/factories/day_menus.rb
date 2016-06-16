@@ -10,9 +10,9 @@
 FactoryGirl.define do
   factory :day_menu do
     day_id { DateTime.now.wday }
-    items {
+    items do
       create_list(:item, 3, menu: create(:menu)) + create_list(:item, 3, menu: create(:menu)) + create_list(:item, 3, menu: create(:menu))
-    }
+    end
     created_at DateTime.now.beginning_of_day
   end
 end

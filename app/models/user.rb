@@ -36,13 +36,12 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :omniauthable, :omniauth_providers => [:google_oauth2]
+         :omniauthable, omniauth_providers: [:google_oauth2]
 
   belongs_to :organization
   has_many :orders, dependent: :destroy
 
-  validates :name, :uniqueness => true, presence: true, length: { in: 1..100 }
-  #validates :organization, presence: true
+  validates :name, uniqueness: true, presence: true, length: { in: 1..100 }
 
   def generate_authentication_token!
     begin
@@ -51,20 +50,20 @@ class User < ActiveRecord::Base
   end
 
   def self.from_omniauth(auth, organization)
-    user = User.where(:provider => auth.provider, :uid => auth.uid).first
+    user = User.where(provider: auth.provider, uid: auth.uid).first
     if user
       return user
     else
-      registered_user = User.where(:email => auth.info.email).first
+      registered_user = User.where(email: auth.info.email).first
       if registered_user
         return registered_user
       else
         user = User.create(
-          provider:auth.provider,
-          uid:auth.uid,
+          provider: auth.provider,
+          uid: auth.uid,
           name: auth.info.name,
-          email:auth.info.email,
-          password:Devise.friendly_token[0,20],
+          email: auth.info.email,
+          password: Devise.friendly_token[0, 20],
           organization: organization
         )
       end
@@ -73,12 +72,10 @@ class User < ActiveRecord::Base
 
   def today_orders
     date = Time.now
-    self.orders.where(created_at: date.beginning_of_day..date.end_of_day)
+    orders.where(created_at: date.beginning_of_day..date.end_of_day)
   end
 
   def become_admin!
-    if ! User.any?
-      self.add_role "admin"
-    end
+    add_role 'admin' unless User.any?
   end
 end

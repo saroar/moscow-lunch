@@ -57,13 +57,13 @@ RSpec.describe Order, type: :model do
     end
 
     context ':date' do
-      it "should return orders for special day" do
+      it 'should return orders for special day' do
         expect Order.date(@date) == [@order_1, @order_2]
       end
     end
 
     context ':organization' do
-      it "should return orders for special organization" do
+      it 'should return orders for special organization' do
         expect Order.organization(@organization_1.name) == [@order_1, @order_2]
       end
     end
@@ -76,7 +76,7 @@ RSpec.describe Order, type: :model do
       @order = FactoryGirl.build(:order, items: @items)
     end
 
-    it { expect{ @order.send(:total_price) }.to change{@order.total}.from(nil).to(@day_menu.items[0].price + @day_menu.items[3].price + @day_menu.items[6].price) }
+    it { expect { @order.send(:total_price) }.to change { @order.total }.from(nil).to(@day_menu.items[0].price + @day_menu.items[3].price + @day_menu.items[6].price) }
   end
 
   context '#set_organization' do
@@ -84,6 +84,6 @@ RSpec.describe Order, type: :model do
       @order = FactoryGirl.build(:order)
     end
 
-    it { expect{ @order.send(:set_organization) }.to change{@order.organization}.from(nil).to(@order.user.organization) }
+    it { expect { @order.send(:set_organization) }.to change { @order.organization }.from(nil).to(@order.user.organization) }
   end
 end

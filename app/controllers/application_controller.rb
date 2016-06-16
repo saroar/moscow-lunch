@@ -1,4 +1,4 @@
-require "application_responder"
+require 'application_responder'
 
 class ApplicationController < ActionController::Base
   self.responder = ApplicationResponder
@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   def authenticate_active_admin_user!
     authenticate_user!
     unless current_user.has_role? :admin
-      flash[:notice] = "Sorry you are not Authorized to access this resource!"
+      flash[:notice] = 'Sorry you are not Authorized to access this resource!'
       redirect_to root_path
     end
   end

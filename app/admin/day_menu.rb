@@ -8,7 +8,7 @@ ActiveAdmin.register DayMenu do
 
   index do
     column :id
-    column "Day", sortable: 'day_id' do |day_menu|
+    column 'Day', sortable: 'day_id' do |day_menu|
       Date::DAYNAMES[day_menu.day_id]
     end
     column :created_at
@@ -17,10 +17,10 @@ ActiveAdmin.register DayMenu do
   end
 
   show do
-    panel "Info" do
+    panel 'Info' do
       table_for day_menu do
         column :id
-        column "Day" do |day_menu|
+        column 'Day' do |day_menu|
           Date::DAYNAMES[day_menu.day_id]
         end
         column :created_at
@@ -28,8 +28,8 @@ ActiveAdmin.register DayMenu do
       end
     end
 
-    panel "Item" do
-      table_for day_menu.items.order(:menu_id) do |item|
+    panel 'Item' do
+      table_for day_menu.items.order(:menu_id) do |_item|
         column :menu
         column :name
         column :price
@@ -38,10 +38,10 @@ ActiveAdmin.register DayMenu do
   end
 
   form do |f|
-    f.inputs "Day Menu" do
+    f.inputs 'Day Menu' do
       f.input :day_id, as: :radio, collection: Date::DAYNAMES.zip((0..7).to_a)
       Menu.all.each do |m|
-        f.input :items, :label => "Items [ #{m.name} ]", as: :check_boxes, collection: Item.where(menu: m)
+        f.input :items, label: "Items [ #{m.name} ]", as: :check_boxes, collection: Item.where(menu: m)
       end
     end
     f.actions

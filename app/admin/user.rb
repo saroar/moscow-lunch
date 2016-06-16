@@ -13,7 +13,7 @@ ActiveAdmin.register User do
     column :provider
     column :uid
     column :roles do |user|
-      user.roles.collect {|c| c.name }.to_sentence
+      user.roles.collect(&:name).to_sentence
     end
     column :auth_token
     column :sign_in_count
@@ -25,7 +25,7 @@ ActiveAdmin.register User do
   end
 
   form do |f|
-    f.inputs "User Details" do
+    f.inputs 'User Details' do
       f.input :name
       f.input :email
       f.input :password
