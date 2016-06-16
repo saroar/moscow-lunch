@@ -7,6 +7,6 @@ branches:
   only:
     - master
 script:
-  - RAILS_ENV=test bundle exec rake db:schema:load --trace
+  - export RAILS_ENV=test
   - bundle exec rake db:test:prepare
   - bundle exec rspec spec/
