@@ -24,7 +24,7 @@ in the application, all users belong to it.
   price.
  ● As a Lunches Admin, on the date page I can see the list of orders and total launch cost
   for today.
-  
+
 Let’s assume that instead of calling to the Launches Delivery Company, they have a smart ERP which can request the order for today through our API at a specific time.
 
 ● As a system, I should be able to provide list of the orders for today with details for each person through RESTful JSON API endpoint.
@@ -42,8 +42,8 @@ Let’s assume that instead of calling to the Launches Delivery Company, they ha
   ○ The source code of application should be uploaded on github.com and deployed to
   heroku in the end.
   ○ Connect Travis­CI to your public repository
-  
-  
+
+
 ==Recommended technologies
 I f y o u k n o w y o u r w a y , s k i p t h i s s t e p . O  t h e r w i s e w e a r e e x p e c t i n g f r o m y o u t o u s e t h e s e g e m s i n project ­ Rails 4+, devise, twitter bootstrap, haml, simple_form, carrierwave, rspec, capybara
 
