@@ -41,7 +41,7 @@ class OrdersController < ApplicationController
 
   def only_one_order!
     unless current_user.today_orders.empty?
-      flash[:notice] = "Sorry only one order par day!"
+      flash[:alert] = "Sorry only one order par day!"
       redirect_to orders_path
     end
   end
