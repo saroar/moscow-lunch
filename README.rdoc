@@ -45,7 +45,9 @@ Let’s assume that instead of calling to the Launches Delivery Company, they ha
 
 
 ==Recommended technologies
-I f y o u k n o w y o u r w a y , s k i p t h i s s t e p . O  t h e r w i s e w e a r e e x p e c t i n g f r o m y o u t o u s e t h e s e g e m s i n project ­ Rails 4+, devise, twitter bootstrap, haml, simple_form, carrierwave, rspec, capybara
+  This is recommended Tecnology you can you use but if you something better then this please feel free skip this :)
+ ­ Rails 4+, devise, twitter bootstrap, haml, simple_form, carrierwave,
+  rspec, capybara
 
 ==Next complexity level:
   ● Add organizations
