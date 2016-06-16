@@ -10,9 +10,6 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-# Database
-gem 'pg'
-
 # Users
 gem 'devise', '~> 4.1', '>= 4.1.1'
 gem 'devise-bootstrap-views'
@@ -71,4 +68,9 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'meta_request'
+end
+
+group :production do
+  gem 'pg', '~> 0.18.4'
+  gem 'rails_12factor', '~> 0.0.3'
 end
