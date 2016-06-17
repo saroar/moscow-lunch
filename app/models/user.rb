@@ -31,7 +31,7 @@
 class User < ActiveRecord::Base
   rolify
   before_create :become_admin!
-  before_validation :generate_authentication_token!
+  before_create :generate_authentication_token!
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -42,12 +42,6 @@ class User < ActiveRecord::Base
   has_many :orders, dependent: :destroy
 
   validates :name, uniqueness: true, presence: true, length: { in: 1..100 }
-
-  def generate_authentication_token!
-    begin
-      self.auth_token = Devise.friendly_token
-    end while self.class.exists?(auth_token: auth_token)
-  end
 
   def self.from_omniauth(auth, organization)
     user = User.where(provider: auth.provider, uid: auth.uid).first
@@ -75,7 +69,15 @@ class User < ActiveRecord::Base
     orders.where(created_at: date.beginning_of_day..date.end_of_day)
   end
 
+  private
+
   def become_admin!
     add_role 'admin' unless User.any?
+  end
+
+  def generate_authentication_token!
+    begin
+      self.auth_token = Devise.friendly_token
+    end while self.class.exists?(auth_token: auth_token)
   end
 end

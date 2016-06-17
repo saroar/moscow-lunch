@@ -33,7 +33,7 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   context 'callback' do
     it { is_expected.to callback(:become_admin!).before(:create) }
-    it { is_expected.to callback(:generate_authentication_token!).before(:validation) }
+    it { is_expected.to callback(:generate_authentication_token!).before(:create) }
   end
 
   context 'associations' do
@@ -135,13 +135,13 @@ RSpec.describe User, type: :model do
 
     it 'generates a uniue token' do
       allow(Devise).to receive(:friendly_token).and_return('auniquetoken123')
-      @user.generate_authentication_token!
+      @user.send(:generate_authentication_token!)
       expect(@user.auth_token).to eql 'auniquetoken123'
     end
 
     it 'generate anther token when one already has been taken' do
       existing_user = FactoryGirl.create(:user, auth_token: 'auniquetoken123')
-      @user.generate_authentication_token!
+      @user.send(:generate_authentication_token!)
       expect(@user.auth_token).not_to eql existing_user.auth_token
     end
   end
