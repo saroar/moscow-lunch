@@ -45,23 +45,18 @@ class User < ActiveRecord::Base
 
   def self.from_omniauth(auth, organization)
     user = User.where(provider: auth.provider, uid: auth.uid).first
-    if user
-      return user
-    else
-      registered_user = User.where(email: auth.info.email).first
-      if registered_user
-        return registered_user
-      else
-        user = User.create(
-          provider: auth.provider,
-          uid: auth.uid,
-          name: auth.info.name,
-          email: auth.info.email,
-          password: Devise.friendly_token[0, 20],
-          organization: organization
-        )
-      end
-    end
+    registered_user = User.where(email: auth.info.email).first
+
+    return user if user
+    return registered_user if registered_user
+    User.create(
+      provider: auth.provider,
+      uid: auth.uid,
+      name: auth.info.name,
+      email: auth.info.email,
+      password: Devise.friendly_token[0, 20],
+      organization: organization
+    )
   end
 
   def today_orders
