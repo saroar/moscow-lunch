@@ -47,6 +47,11 @@ class User < ActiveRecord::Base
     OmniauthUser.find_or_create(auth, organization)
   end
 
+  def today_orders
+    date = Time.now
+    orders.where(created_at: date.beginning_of_day..date.end_of_day)
+  end
+
   private
 
   def become_admin!

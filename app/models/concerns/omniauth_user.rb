@@ -1,4 +1,11 @@
 class OmniauthUser
+  attr_reader :auth, :organization
+
+  def initialize(auth, organization)
+    @auth = auth
+    @organization = organization
+  end
+
   def self.find_or_create(auth, organization)
     if omniauth_user(auth, organization)
       omniauth_user(auth, organization)
