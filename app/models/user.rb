@@ -44,24 +44,7 @@ class User < ActiveRecord::Base
   validates :name, uniqueness: true, presence: true, length: { in: 1..100 }
 
   def self.from_omniauth(auth, organization)
-    user = User.where(provider: auth.provider, uid: auth.uid).first
-    registered_user = User.where(email: auth.info.email).first
-
-    return user if user
-    return registered_user if registered_user
-    User.create(
-      provider: auth.provider,
-      uid: auth.uid,
-      name: auth.info.name,
-      email: auth.info.email,
-      password: Devise.friendly_token[0, 20],
-      organization: organization
-    )
-  end
-
-  def today_orders
-    date = Time.now
-    orders.where(created_at: date.beginning_of_day..date.end_of_day)
+    OmniauthUser.find_or_create(auth, organization)
   end
 
   private
