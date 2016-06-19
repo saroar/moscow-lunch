@@ -44,7 +44,7 @@ class User < ActiveRecord::Base
   validates :name, uniqueness: true, presence: true, length: { in: 1..100 }
 
   def self.from_omniauth(auth, organization)
-    OmniauthUser.find_or_create(auth, organization)
+    OmniauthUser.new(@auth, @originsation)
   end
 
   def today_orders
