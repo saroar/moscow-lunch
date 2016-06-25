@@ -12,6 +12,6 @@
 !/log/.keep
 /tmp
 
-/config/application.yml
+
 /config/database.yml
 .travis.yml

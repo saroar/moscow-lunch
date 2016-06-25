@@ -70,5 +70,50 @@ RSpec.feature 'Order', type: :feature do
       it { expect(current_path).to eql('/users/sign_in') }
       it { should have_content 'You need to sign in or sign up before continuing.' }
     end
+
+    feature 'First Course Menu' do
+      before (:each) do
+        login_as(@user, scope: :user)
+        visit '/orders/new'
+      end
+
+      it 'should have first menu' do
+        Menu.first.items do |ft|
+          should have_content ft.name
+        end
+      end
+
+      scenario 'when user select two items from the First Course menu' do
+        all('select').each do |select|
+          o1 = select.find(:xpath, 'option[1]').select_option
+          o2 = select.find(:xpath, 'option[2]').select_option
+          o1 = nil
+
+          expect(o1).to eql(nil)
+          expect(o2).to eql('selected')
+        end
+
+
+
+        # # expect(find('select').find(:xpath, 'option[2]').select_option).to eql("selected")
+        # # find('#order_item_ids').find("option[value='2']").click
+        #
+        # Menu.first.items.all.each do |fmi|
+        #   binding.pry
+        #
+        # end
+        # option1 = Menu.first.items[1]
+        # option2 = Menu.first.items[2]
+        # binding.pry
+        #
+        # #select(option1.id, from: option.ids)
+        # #
+        # # choose(option1.id)
+        # # choose(option2.id)
+        # #
+        # #
+        # # expect(choose(option2.id)).to qql("checked")
+      end
+    end
   end
 end
