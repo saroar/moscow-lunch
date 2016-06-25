@@ -10,6 +10,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'sqlite3'
 
 # Users
 gem 'devise', '~> 4.1', '>= 4.1.1'
@@ -71,7 +72,7 @@ group :development do
   gem 'meta_request'
 end
 
-group :production do
-  gem 'pg', '~> 0.18.4'
-  gem 'rails_12factor', '~> 0.0.3'
-end
+# group :production do
+#   gem 'pg', '~> 0.18.4'
+#   gem 'rails_12factor', '~> 0.0.3'
+# end

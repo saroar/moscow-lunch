@@ -14,11 +14,6 @@
 #  index_orders_on_organization_id  (organization_id)
 #  index_orders_on_user_id          (user_id)
 #
-# Foreign Keys
-#
-#  fk_rails_f868b47f6a  (user_id => users.id)
-#  fk_rails_fe8af6535c  (organization_id => organizations.id)
-#
 
 class Order < ActiveRecord::Base
   include Filterable

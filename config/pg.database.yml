@@ -1,0 +1,21 @@
+# PostgreSQL. Versions 8.2 and up are supported.
+
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+
+development:
+  <<: *default
+  database: moscow_lunch_development
+
+test:
+  <<: *default
+  database: moscow_lunch_test
+
+production:
+  <<: *default
+  database: moscow_lunch_production
+  username: moscow_lunch
+  password: <%= ENV['MOSCOW_LUNCH_DATABASE_PASSWORD'] %>
+  host: localhost
